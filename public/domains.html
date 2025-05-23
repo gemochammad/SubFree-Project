@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SubFree Domains</title>
+  <link rel="icon" href="https://iili.io/3QPMiPe.md.png" />
+  <style>
+    /* predictable sizing */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    /* body margins: desktop 20%, mobile 3% */
+    @media (min-width: 768px) {
+      body { margin: 0 20%; }
+    }
+    @media (max-width: 767px) {
+      body { margin: 0 3%; }
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      background: #121212;
+      color: #eee;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 1rem 0;
+    }
+
+    /* glass panels */
+    .glass {
+      position: relative;
+      background: rgba(255,255,255,0.09);
+      border-radius: 16px;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+      backdrop-filter: blur(6.5px);
+      -webkit-backdrop-filter: blur(6.5px);
+      padding: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    /* header */
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .site-header .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .site-header .logo img {
+      width: 40px; height: 40px;
+      object-fit: contain;
+    }
+    .site-header .logo h1 {
+      margin: 0;
+      font-size: 1.75rem;
+      color: #fff;
+    }
+    #theme-toggle {
+      background: transparent;
+      border: none;
+      font-size: 1.25rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 50%;
+      color: #fff;
+      transition: background 0.3s;
+    }
+    #theme-toggle:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    /* content panel: vertical scroll only, custom scrollbar */
+    .content-panel {
+      flex: 1 1 auto;
+      overflow-y: auto;
+      overflow-x: hidden;
+      margin-bottom: 0; /* override .glass bottom margin */
+    }
+    /* Firefox */
+    .content-panel {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,0.3) rgba(255,255,255,0.1);
+    }
+    /* WebKit */
+    .content-panel::-webkit-scrollbar {
+      width: 8px;
+    }
+    .content-panel::-webkit-scrollbar-track {
+      background: rgba(255,255,255,0.1);
+      border-radius: 4px;
+    }
+    .content-panel::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.3);
+      border-radius: 4px;
+    }
+    .content-panel::-webkit-scrollbar-thumb:hover {
+      background: rgba(255,255,255,0.5);
+    }
+
+    .content-panel > h1 {
+      text-align: center;
+      margin-bottom: 1rem;
+      font-size: 1.75rem;
+      color: #fff;
+    }
+
+    /* search box */
+    .search-box {
+      padding: 0 1rem;
+      margin-bottom: 1rem;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 8px;
+      background: #1e1e1e;
+      color: #eee;
+      font-size: 1rem;
+    }
+
+    /* sections & list */
+    .section {
+      margin-bottom: 2rem;
+    }
+    .section h2 {
+      margin: 0 0 0.5rem 2rem;
+      font-size: 1.25rem;
+      color: #fff;
+    }
+    .section ul {
+      list-style: none;
+      margin: 0 0 0 3rem;
+      padding: 0;
+    }
+    .section ul li {
+      margin-left: 1rem;
+      padding: 0.3rem 0;
+      border-bottom: 1px solid #2e2e2e;
+    }
+    .highlight {
+      color: #00d1b2;
+      text-decoration: none;
+    }
+
+    /* Animated gradient bubbles on dark background */
+    #bubble-container { position: fixed; inset: 0; overflow: hidden; z-index: 0; background: #1D202C; }
+    .bubble { position: absolute; border-radius: 50%; mix-blend-mode: screen; filter: blur(40px); opacity: 0.6; z-index: 0; }
+    #bubble1 { width:300px; height:300px; top:10%; left:15%; background: radial-gradient(circle at 30% 30%, rgba(0,255,255,0.5), transparent 70%); animation: move1 30s ease-in-out infinite; }
+    #bubble2 { width:350px; height:350px; top:60%; left:10%; background: radial-gradient(circle at 50% 50%, rgba(25,0,255,0.5), transparent 70%); animation: move2 28s ease-in-out infinite; }
+    #bubble3 { width:280px; height:280px; top:20%; left:70%; background: radial-gradient(circle at 50% 50%, rgba(0,255,150,0.5), transparent 70%); animation: move3 32s ease-in-out infinite; }
+    #bubble4 { width:330px; height:330px; top:65%; left:75%; background: radial-gradient(circle at 30% 30%, rgba(255,200,0,0.5), transparent 70%); animation: move4 26s ease-in-out infinite; }
+    #bubble5 { width:330px; height:330px; top:30%; left:50%; background: radial-gradient(circle at 30% 30%, rgba(255,0,170,0.5), transparent 70%); animation: move4 26s ease-in-out infinite; }
+    @keyframes move1 { 0%,100% { transform: translate(0); } 25% { transform: translate(200px,50px); } 50% { transform: translate(-150px,200px); } 75% { transform: translate(100px,-100px); } }
+    @keyframes move2 { 0%,100% { transform: translate(0); } 25% { transform: translate(-180px,100px); } 50% { transform: translate(150px,-150px); } 75% { transform: translate(-100px,200px); } }
+    @keyframes move3 { 0%,100% { transform: translate(0); } 25% { transform: translate(100px,150px); } 50% { transform: translate(-200px,-100px); } 75% { transform: translate(200px,200px); } }
+    @keyframes move4 { 0%,100% { transform: translate(0); } 25% { transform: translate(-150px,-200px); } 50% { transform: translate(200px,150px); } 75% { transform: translate(-100px,100px); } }
+
+    /* Shimmering outline effect */
+    @property --gradient-angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+    .glass::after {
+      content: '';
+      position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px;
+      border-radius: inherit;
+      background: conic-gradient(
+        from var(--gradient-angle),
+        rgba(0,204,255,0), rgba(0,204,255,0.8) 20%,
+        rgba(255,255,255,1) 40%, rgba(0,204,255,0.8) 60%,
+        rgba(0,204,255,0) 80%
+      );
+      z-index: -1; padding: 2px;
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      animation: rotate 4s linear infinite;
+    }
+    @keyframes rotate { to { --gradient-angle: 360deg; } }
+  </style>
+</head>
+<body>
+
+  <div id="bubble-container">
+    <div id="bubble1" class="bubble"></div>
+    <div id="bubble2" class="bubble"></div>
+    <div id="bubble3" class="bubble"></div>
+    <div id="bubble4" class="bubble"></div>
+    <div id="bubble5" class="bubble"></div>
+  </div>
+
+  <!-- HEADER PANEL -->
+  <div class="glass">
+    <header class="site-header">
+      <div class="logo">
+        <a href="/"><img src="https://iili.io/3QPMiPe.md.png" alt="Logo"></a>
+        <h1>SubFree Project</h1>
+      </div>
+    </header>
+  </div>
+
+  <!-- CONTENT PANEL (search + list) -->
+  <div class="glass content-panel">
+    <h1>Domain List</h1>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search subdomains…" />
+    </div>
+    <div id="domainList">Loading…</div>
+  </div>
+
+  <script>
+    async function fetchDomains() {
+      const res = await fetch('/api/all-domain');
+      const data = await res.json();
+      return Object.entries(data).map(([prefix, entry]) => ({
+        host: `${prefix}.${entry.domain}`
+      }));
+    }
+
+    function groupByLetter(items) {
+      return items.reduce((acc, {host}) => {
+        const L = host[0].toUpperCase();
+        (acc[L] = acc[L] || []).push(host);
+        return acc;
+      }, {});
+    }
+
+    function renderList(groups) {
+      const container = document.getElementById('domainList');
+      container.innerHTML = '';
+      Object.keys(groups).sort().forEach(letter => {
+        const sec = document.createElement('div');
+        sec.className = 'section';
+        sec.innerHTML = `
+          <h2>${letter}</h2>
+          <ul>
+            ${groups[letter].map(h =>
+              `<li><a href="https://${h}" target="_blank" class="highlight">${h}</a></li>`
+            ).join('')}
+          </ul>`;
+        container.appendChild(sec);
+      });
+    }
+
+    function handleSearch(items) {
+      const inp = document.getElementById('searchInput');
+      inp.addEventListener('input', () => {
+        const q = inp.value.toLowerCase();
+        const filtered = items.filter(({host}) =>
+          host.toLowerCase().includes(q)
+        );
+        renderList(groupByLetter(filtered));
+      });
+    }
+
+    (async () => {
+      const items = await fetchDomains();
+      renderList(groupByLetter(items));
+      handleSearch(items);
+    })();
+  </script>
+</body>
+</html>

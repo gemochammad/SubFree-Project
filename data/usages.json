@@ -1,0 +1,143 @@
+{
+  "cloudflare-pages": {
+    "name": "Cloudflare Pages",
+    "fields": [
+      {
+        "key": "cnameValue",
+        "label": "CNAME Record for Pages (e.g. your-project.pages.dev)",
+        "type": "text",
+        "placeholder": "your-project.pages.dev"
+      }
+    ],
+    "integration": {
+      "provider": "cloudflare",
+      "recordType": "CNAME",
+      "nameTemplate": "{{subdomain}}",
+      "contentField": "cnameValue",
+      "ttl": 1,
+      "proxied": true
+    }
+  },
+  "discord-verification": {
+    "name": "Discord Domain Verification",
+    "fields": [
+      {
+        "key": "txtRecord",
+        "label": "Discord TXT Verification Token",
+        "type": "text",
+        "placeholder": "\"insert-discord-token-here\""
+      }
+    ],
+    "integration": {
+      "provider": "cloudflare",
+      "recordType": "TXT",
+      "nameTemplate": "_discord.{{subdomain}}.{{domain}}",
+      "contentField": "txtRecord",
+      "ttl": 1
+    }
+  },
+  "github-pages": {
+    "name": "GitHub Pages",
+    "fields": [
+      {
+        "key": "cnameValue",
+        "label": "CNAME Record for GitHub Pages (e.g. username.github.io)",
+        "type": "text",
+        "placeholder": "username.github.io"
+      }
+    ],
+    "integration": {
+      "provider": "cloudflare",
+      "recordType": "CNAME",
+      "nameTemplate": "{{subdomain}}",
+      "contentField": "cnameValue",
+      "ttl": 1,
+      "proxied": true
+    }
+  },
+  "hashnode-blogs": {
+    "name": "Hashnode Blogs",
+    "fields": [],
+    "integration": {
+      "provider": "cloudflare",
+      "recordType": "CNAME",
+      "nameTemplate": "hashnode",
+      "content": "hashnode.network",
+      "ttl": 1,
+      "proxied": true
+    }
+  },
+  "netlify": {
+    "name": "Netlify",
+    "fields": [
+      {
+        "key": "siteDomain",
+        "label": "CNAME Record for Netlify (e.g. your-site.netlify.app)",
+        "type": "text",
+        "placeholder": "your-site.netlify.app"
+      },
+      {
+        "key": "netlifyChallenge",
+        "label": "Netlify TXT Verification Value",
+        "type": "text",
+        "placeholder": "e.g. Ua-AsuUzNJtJhPiqrzmwN"
+      }
+    ],
+    "integration": [
+      {
+        "provider": "cloudflare",
+        "recordType": "TXT",
+        "nameTemplate": "netlify-challenge",
+        "contentField": "netlifyChallenge",
+        "ttl": 3600
+      },
+      {
+        "provider": "cloudflare",
+        "recordType": "CNAME",
+        "nameTemplate": "{{subdomain}}",
+        "contentField": "siteDomain",
+        "ttl": 1,
+        "proxied": true
+      }
+    ]
+  },
+  "railway": {
+    "name": "Railway",
+    "fields": [
+      {
+        "key": "cnameValue",
+        "label": "CNAME Record for Railway (e.g. subdomain.up.railway.app)",
+        "type": "text",
+        "placeholder": "subdomain.up.railway.app"
+      }
+    ],
+    "integration": {
+      "provider": "cloudflare",
+      "recordType": "CNAME",
+      "nameTemplate": "{{subdomain}}",
+      "contentField": "cnameValue",
+      "ttl": 1,
+      "proxied": true
+    }
+  },
+  "vercel": {
+    "name": "Vercel",
+    "fields": [
+      {
+        "key": "cnameRecord",
+        "label": "CNAME Record (e.g. cname.vercel-dns.com)",
+        "type": "text",
+        "placeholder": "cname.vercel-dns.com"
+      }
+    ],
+    "integration": {
+      "provider": "cloudflare",
+      "recordType": "CNAME",
+      "nameTemplate": "vercel",
+      "contentField": "cnameRecord",
+      "ttl": 1,
+      "proxied": true
+    }
+  }
+
+}

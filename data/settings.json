@@ -1,0 +1,9 @@
+{
+  "example.com":{
+      "port": 3000,
+      "cloudflare": {
+        "apiToken": "",
+        "zoneId":  ""
+      }
+  }
+}

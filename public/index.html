@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>SubFree Project - Get Free Custom Subdomain For Free!</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="https://iili.io/3QPMiPe.md.png" type="image/png" />
+  <link rel="apple-touch-icon" href="https://iili.io/3QPMiPe.md.png" />
+
+  <!-- Meta SEO -->
+  <meta name="description" content="SubFree is a hassle-free way to claim and manage custom subdomains — no GitHub forks, no stress. Just fast, secure, and smart DNS management with Cloudflare." />
+  <meta name="keywords" content="subdomain manager, free subdomain, custom DNS, Cloudflare integration, domain management, is-a.dev alternative" />
+  <meta name="author" content="SubFree Team" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="SubFree Project — Free Custom Subdomain Manager" />
+  <meta property="og:description" content="No more GitHub forks. SubFree makes custom subdomain management easy and secure with automatic Cloudflare updates." />
+  <meta property="og:image" content="https://iili.io/3QPMiPe.md.png" />
+  <meta property="og:url" content="https://subfree.yourdomain.com" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SubFree Project — Free Custom Subdomain Manager" />
+  <meta name="twitter:description" content="Skip the hassle — SubFree gives you custom subdomains with smooth DNS updates and zero tech drama." />
+  <meta name="twitter:image" content="https://iili.io/3QPMiPe.md.png" />
+
+  <!-- Tailwind + dark mode -->
+  <script>tailwind.config = { darkMode: 'class' };</script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* Animated gradient bubbles on dark background */
+    #bubble-container { position: fixed; inset: 0; overflow: hidden; z-index: 0; background: #1D202C; }
+    .bubble { position: absolute; border-radius: 50%; mix-blend-mode: screen; filter: blur(40px); opacity: 0.6; z-index: 0; }
+    #bubble1 { width:300px; height:300px; top:10%; left:15%; background: radial-gradient(circle at 30% 30%, rgba(0,255,255,0.5), transparent 70%); animation: move1 30s ease-in-out infinite; }
+    #bubble2 { width:350px; height:350px; top:60%; left:10%; background: radial-gradient(circle at 50% 50%, rgba(25,0,255,0.5), transparent 70%); animation: move2 28s ease-in-out infinite; }
+    #bubble3 { width:280px; height:280px; top:20%; left:70%; background: radial-gradient(circle at 50% 50%, rgba(0,255,150,0.5), transparent 70%); animation: move3 32s ease-in-out infinite; }
+    #bubble4 { width:330px; height:330px; top:65%; left:75%; background: radial-gradient(circle at 30% 30%, rgba(255,200,0,0.5), transparent 70%); animation: move4 26s ease-in-out infinite; }
+    #bubble5 { width:330px; height:330px; top:30%; left:50%; background: radial-gradient(circle at 30% 30%, rgba(255,0,170,0.5), transparent 70%); animation: move4 26s ease-in-out infinite; }
+    @keyframes move1 { 0%,100% { transform: translate(0); } 25% { transform: translate(200px,50px); } 50% { transform: translate(-150px,200px); } 75% { transform: translate(100px,-100px); } }
+    @keyframes move2 { 0%,100% { transform: translate(0); } 25% { transform: translate(-180px,100px); } 50% { transform: translate(150px,-150px); } 75% { transform: translate(-100px,200px); } }
+    @keyframes move3 { 0%,100% { transform: translate(0); } 25% { transform: translate(100px,150px); } 50% { transform: translate(-200px,-100px); } 75% { transform: translate(200px,200px); } }
+    @keyframes move4 { 0%,100% { transform: translate(0); } 25% { transform: translate(-150px,-200px); } 50% { transform: translate(200px,150px); } 75% { transform: translate(-100px,100px); } }
+
+    /* Shimmering outline effect */
+    @property --gradient-angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+    .glass, .glass-btn {
+      position: relative;
+      background: rgba(255,255,255,0.09);
+      border-radius: 16px;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+      backdrop-filter: blur(6.5px);
+      -webkit-backdrop-filter: blur(6.5px);
+      z-index: 1;
+    }
+    .glass-btn { border-radius: 9999px; }
+    .glass::after, .glass-btn::after {
+      content: '';
+      position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px;
+      border-radius: inherit;
+      background: conic-gradient(
+        from var(--gradient-angle),
+        rgba(0,204,255,0),
+        rgba(0,204,255,0.8) 20%,
+        rgba(255,255,255,1) 40%,
+        rgba(0,204,255,0.8) 60%,
+        rgba(0,204,255,0) 80%
+      );
+      z-index: -1;
+      padding: 2px;
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: rotate 4s linear infinite;
+      animation-delay: var(--delay, 0s);
+    }
+    .glass-btn::after { animation-duration: 3s; }
+    @keyframes rotate { to { --gradient-angle: 360deg; } }
+
+    /* Dark-mode select + option styling */
+    #usage-select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      padding: 0.75rem 1rem;
+      border-radius: 0.75rem;
+      width: 100%;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #fff;
+      backdrop-filter: blur(10px);
+    }
+    #usage-select option {
+      background-color: #222;
+      color: #eee;
+    }
+    #usage-select option:hover {
+      background-color: #333;
+    }
+    #usage-select option:checked {
+      background-color: #444;
+      color: #fff;
+    }
+
+    #baseDomainSelect option {
+      background-color: #222;
+      color: #eee;
+    }
+    #baseDomainSelect option:hover {
+      background-color: #333;
+    }
+    #baseDomainSelect option:checked {
+      background-color: #444;
+      color: #fff;
+    }
+
+    
+    #delete-baseDomainSelect option {
+      background-color: #222;
+      color: #eee;
+    }
+    #delete-baseDomainSelect option:hover {
+      background-color: #333;
+    }
+    #delete-baseDomainSelect option:checked {
+      background-color: #444;
+      color: #fff;
+    }
+
+
+    /* Modal transition */
+    .fade { transition: opacity .2s ease, transform .2s ease; }
+  </style>
+</head>
+
+<body class="relative antialiased font-sans overflow-auto">
+  <!-- Gradient bubbles -->
+  <div id="bubble-container">
+    <div id="bubble1" class="bubble"></div>
+    <div id="bubble2" class="bubble"></div>
+    <div id="bubble3" class="bubble"></div>
+    <div id="bubble4" class="bubble"></div>
+    <div id="bubble5" class="bubble"></div>
+  </div>
+
+  <div class="container mx-auto px-4 md:px-8 py-10 flex flex-col-reverse md:flex-row h-auto md:min-h-screen gap-8 relative z-10">
+    <!-- Sidebar -->
+    <aside class="w-full md:w-80 glass p-6 flex flex-col" style="--delay: -1.41s;">
+      <h2 class="text-2xl font-semibold mb-6 text-white">Latest Requests</h2>
+      <ul id="sidebar-requests" class="flex-1 space-y-3 text-sm text-white overflow-y-auto"></ul>
+      <div class="mt-8 space-y-3">
+        <a href="/howto"  class="block w-full text-center bg-white/20 hover:bg-white/30 text-white py-2 rounded-lg transition">How To Use</a>
+        <a href="/donation" class="block w-full text-center bg-white/20 hover:bg-white/30 text-white py-2 rounded-lg transition">Donation</a>
+        <a href="/domains" class="block w-full text-center bg-white/20 hover:bg-white/30 text-white py-2 rounded-lg transition">All Domain</a>
+        <a href="#" id="open-delete-modal" class="block w-full text-center text-white py-2 rounded-lg transition" style="background-color: #430000;">Request Delete</a>
+      </div>
+    </aside>
+
+<!-- Main area -->
+<div class="flex-1 flex flex-col">
+  <header class="glass p-4 mb-6 flex items-center justify-between">
+    <div class="flex items-center gap-4">
+      <img src="https://iili.io/3QPMiPe.md.png" alt="Logo" class="w-10 h-10 object-contain" />
+      <h1 class="text-3xl font-bold text-white">SubFree Project</h1>
+    </div>
+    <button id="theme-toggle" class="p-2 rounded-full hover:bg-white/30 transition text-white">🌙/☀️</button>
+  </header>
+
+
+<div class="grid grid-cols-3 gap-2 sm:gap-6 mb-4 sm:mb-6 px-2">
+  <div class="glass p-2 sm:p-4 shadow-md hover:scale-105 transition text-center">
+    <p class="text-[10px] sm:text-sm text-white/75">Total Domains</p>
+    <p id="stat-total" class="mt-1 sm:mt-2 text-lg sm:text-4xl font-bold text-white">0</p>
+  </div>
+  <div class="glass p-2 sm:p-4 shadow-md hover:scale-105 transition text-center">
+    <p class="text-[10px] sm:text-sm text-white/75">Requested Today</p>
+    <p id="stat-today" class="mt-1 sm:mt-2 text-lg sm:text-4xl font-bold text-white">0</p>
+  </div>
+  <div class="glass p-2 sm:p-4 shadow-md hover:scale-105 transition text-center">
+    <p class="text-[10px] sm:text-sm text-white/75">Latest Count</p>
+    <p id="stat-latest" class="mt-1 sm:mt-2 text-lg sm:text-4xl font-bold text-white">0</p>
+  </div>
+</div>
+
+
+<div class="glass p-6 mb-6 h-full flex flex-col items-center">
+  <img
+    src="https://iili.io/3QPlASp.md.png"
+    alt="SubFree Project"
+    class="max-w-full h-16 sm:h-24 object-contain mx-auto w-[90%] sm:w-[60%]"
+  />
+<div class="w-full mt-6 text-gray-200 font-sans">
+  <p class="mb-6 text-base leading-relaxed">
+    Meet SubFree Project — your free and easy way to set up custom subdomains. Inspired by <strong class="font-semibold text-blue-400">is-a.dev</strong>, but made simpler so you don’t have to deal with complicated code or GitHub forks. Just add your subdomains, and everything updates automatically through Cloudflare. No tech stress, just smooth and hassle-free domain management.
+  </p>
+
+  <h2 class="text-2xl font-bold text-white border-b-2 border-blue-400 pb-1 mb-5">
+    Why You’ll Love SubFree
+  </h2>
+
+  <ul class="list-disc list-inside space-y-3 text-gray-300">
+    <li><strong class="font-semibold text-blue-400">No more complicated repos</strong> — just a slick web app that’s easy to use.</li>
+    <li><strong class="font-semibold text-blue-400">Captcha protection</strong> — keeping spam out so you get legit requests only.</li>
+    <li><strong class="font-semibold text-blue-400">Smart validation</strong> — only good subdomains get through, no weird stuff allowed.</li>
+    <li><strong class="font-semibold text-blue-400">Automatic DNS updates</strong> — your subdomains stay fresh without lifting a finger.</li>
+    <li><strong class="font-semibold text-blue-400">Clear and simple data</strong> — easy to peek behind the scenes if you’re curious.</li>
+    <li><strong class="font-semibold text-blue-400">Fast API</strong> — powering everything behind the scenes so your experience is smooth.</li>
+  </ul>
+
+  <p class="mt-6 text-base leading-relaxed">
+    Basically, SubFree makes managing your subdomains hassle-free and quick — so you can focus on what really matters.
+  </p>
+</div>
+
+</div>
+
+      
+      <div class="flex-1 flex items-center justify-center">
+        <button id="open-modal" class="glass-btn w-full px-12 py-4 rounded-full text-xl font-semibold shadow-2xl hover:scale-105 transition text-white">
+          Get Free Subdomain
+        </button>
+      </div>
+      
+    </div>
+  </div>
+
+
+
+<!-- Modal -->
+<div id="modal-overlay" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden fade z-30" style="margin: 10px;">
+  <div id="modal-box" class="glass p-8 max-w-md w-full relative fade">
+    <button id="close-modal" class="absolute top-4 right-4 text-white hover:text-gray-200 transition">&times;</button>
+    <h2 class="text-2xl font-semibold mb-6 text-center text-white">Request Your Subdomain</h2>
+    <form action="/request" method="POST" class="space-y-5">
+      <div>
+        <label class="block text-sm font-medium mb-1 text-white">Owner Name</label>
+        <input name="owner" required class="w-full px-4 py-2 border border-white/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/75 bg-transparent text-white"/>
+      </div>
+        <div>
+          <label class="block text-sm font-medium mb-1 text-white">Subdomain</label>
+          <div class="flex">
+            <input
+              id="subdomain-input"
+              name="subdomain"
+              required
+              pattern="^[a-z0-9]+(-[a-z0-9]+)*$"
+              title="Only lowercase letters, numbers, and hyphens (-) are allowed. Cannot start or end with a hyphen."
+              placeholder="your-name"
+              class="flex-1 px-4 py-2 border border-white/50 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-white/75 bg-transparent text-white transition-colors"
+            />
+            <!-- Ganti span dengan select: -->
+            <select
+              id="baseDomainSelect"
+              name="baseDomain"
+              required
+              class="py-2 bg-white/20 border-l border-white/50 rounded-r-lg bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-white/75"
+            >
+              <option value="" disabled selected>Loading domains…</option>
+            </select>
+          </div>
+        </div>
+      <div>
+        <label class="block text-sm font-medium mb-1 text-white">Point To</label>
+        <div class="relative">
+          <select
+            id="usage-select"
+            name="usage"
+            required
+            class="glass w-full pl-4 pr-10 py-2 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-white/75 text-white"
+          >
+            <option value="" disabled selected>Choose provider…</option>
+          </select>
+          <svg class="pointer-events-none absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/75"
+               xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </div>
+      </div>
+      <div id="usage-fields" class="space-y-4"></div>
+      <div>
+        <label class="block text-sm font-medium mb-1 text-white">Your Email</label>
+        <input name="email" type="email" required placeholder="you@example.com"
+               class="w-full px-4 py-2 border border-white/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/75 bg-transparent text-white"/>
+      </div>
+
+      <!-- RECAPTCHA HERE -->
+      <div class="g-recaptcha" data-sitekey="6LeReEIrAAAAABo0WgcGPVVgpEJ9Xw9wHIhhyBlQ"></div>
+
+      <div class="text-right">
+        <button
+          type="submit"
+          id="submit-btn"
+          class="glass-btn w-full px-6 py-2 rounded-full font-semibold transition text-white"
+          disabled
+          style="--delay: -2.22s;"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div
+  id="delete-modal-overlay"
+  class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden fade z-30"
+  style="margin: 10px;"
+>
+  <div id="delete-modal-box" class="glass p-8 max-w-md w-full relative fade">
+    <button
+      id="close-delete-modal"
+      class="absolute top-4 right-4 text-white hover:text-gray-200 transition"
+    >&times;</button>
+    <h2 class="text-2xl font-semibold mb-6 text-center text-white">
+      Delete Your Subdomain
+    </h2>
+    <form action="/delete" method="POST" class="space-y-5">
+      <div>
+        <label class="block text-sm font-medium mb-1 text-white">
+          Owner Name
+        </label>
+        <input
+          name="owner"
+          required
+          class="w-full px-4 py-2 border border-white/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/75 bg-transparent text-white"
+        />
+      </div>
+      <div>
+        <label class="block text-sm font-medium mb-1 text-white">
+          Subdomain
+        </label>
+        <div class="flex">
+          <input
+            name="subdomain"
+            required
+            pattern="^[a-z0-9]+(-[a-z0-9]+)*$"
+            title="Only lowercase letters, numbers, and hyphens (-) allowed. Cannot start or end with a hyphen."
+            placeholder="your-name"
+            class="flex-1 px-4 py-2 border border-white/50 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-white/75 bg-transparent text-white transition-colors"
+          />
+          <select
+            id="delete-baseDomainSelect"
+            name="baseDomain"
+            required
+            class="px-4 py-2 bg-white/20 border-l border-white/50 rounded-r-lg bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-white/75"
+          >
+            <option value="" disabled selected>Domain</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <label class="block text-sm font-medium mb-1 text-white">
+          Your Email
+        </label>
+        <input
+          name="email"
+          type="email"
+          required
+          placeholder="you@example.com"
+          class="w-full px-4 py-2 border border-white/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/75 bg-transparent text-white"
+        />
+      </div>
+      <!-- RECAPTCHA -->
+      <div class="g-recaptcha" data-sitekey="6LeReEIrAAAAABo0WgcGPVVgpEJ9Xw9wHIhhyBlQ"></div>
+      <div class="text-right">
+        <button
+          type="submit"
+          id="delete-submit-btn"
+          class="glass-btn w-full px-6 py-2 rounded-full font-semibold transition text-white"
+        >
+          Delete
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!-- reCAPTCHA script -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+
+<!-- Info/Tutorial Modal -->
+<div id="info-modal-overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-40">
+  <div class="glass p-6 max-w-lg w-full relative">
+    <button id="info-modal-close" class="absolute top-3 right-3 text-white text-xl">&times;</button>
+    <h3 id="info-modal-title" class="text-2xl font-semibold text-white mb-4"></h3>
+    <p id="info-modal-message" class="text-white mb-6"></p>
+    <a id="info-modal-button" href="#" target="_blank" class="glass-btn px-4 py-2 rounded-full text-white inline-block">
+      Tutorial
+    </a>
+  </div>
+</div>
+
+<!-- Notification Modal -->
+<div id="notif-modal-overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-40">
+  <div class="glass p-6 max-w-lg w-full relative">
+    <button id="notif-modal-close" class="absolute top-3 right-3 text-white text-2xl">&times;</button>
+    <h3 id="notif-modal-title" class="text-2xl font-semibold mb-4"></h3>
+    <p id="notif-modal-message" class="mb-6"></p>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const params  = new URLSearchParams(window.location.search);
+  const action  = params.get('action');    // "success" | "failed" | "error"
+  const message = params.get('message');   // percent‑encoded
+
+  if (action && message) {
+    const overlay = document.getElementById('notif-modal-overlay');
+    const titleEl = document.getElementById('notif-modal-title');
+    const msgEl   = document.getElementById('notif-modal-message');
+    const text    = decodeURIComponent(message);
+
+    // reset any color classes
+    titleEl.classList.remove('text-white','text-red-500');
+    msgEl.classList.remove('text-white','text-red-200');
+
+    if (action === 'success') {
+      titleEl.textContent = 'Success';
+      titleEl.classList.add('text-white');
+      msgEl.textContent   = text;
+      msgEl.classList.add('text-white');
+    } else {
+      const label = action.charAt(0).toUpperCase() + action.slice(1);
+      titleEl.textContent = label;
+      titleEl.classList.add('text-red-500');
+      msgEl.textContent   = text;
+      msgEl.classList.add('text-red-200');
+    }
+
+    overlay.classList.remove('hidden');
+    history.replaceState(null, '', window.location.pathname);
+  }
+
+  document
+    .getElementById('notif-modal-close')
+    .addEventListener('click', () => {
+      document.getElementById('notif-modal-overlay').classList.add('hidden');
+    });
+});
+</script>
+
+
+<script>
+  // UTILITY: toggle visibility
+  function toggleModal(id) {
+    document.getElementById(id).classList.toggle('hidden');
+  }
+
+  // Open/Delete Modal handlers
+  document
+    .getElementById('open-delete-modal')
+    .addEventListener('click', e => {
+      e.preventDefault();
+      toggleModal('delete-modal-overlay');
+    });
+  document
+    .getElementById('close-delete-modal')
+    .addEventListener('click', () => {
+      toggleModal('delete-modal-overlay');
+    });
+
+  // Populate both <select>s from settings.settings = ["is-my.site","now-is.online"]
+  async function loadDomainsInto(selectId) {
+    try {
+      const resp = await fetch('/api/domains');
+      if (!resp.ok) throw new Error('Network response was not ok');
+      const data = await resp.json();
+      // assume API returns: { settings: [ "is-my.site", "now-is.online" ] }
+      const domains = Array.isArray(data.settings)
+        ? data.settings
+        : [];
+      const select = document.getElementById(selectId);
+      select.innerHTML = '<option value="" disabled selected>Domain</option>';
+      domains.forEach(d => {
+        const opt = document.createElement('option');
+        opt.value = d;
+        opt.textContent = d;
+        select.append(opt);
+      });
+    } catch (err) {
+      console.error(`Error loading domains for #${selectId}:`, err);
+    }
+  }
+
+  // initialize both dropdowns
+  loadDomainsInto('baseDomainSelect');        
+  loadDomainsInto('delete-baseDomainSelect');
+
+  // reCAPTCHA callback to enable Delete button
+  window.enableDeleteBtn = function() {
+    document.getElementById('delete-submit-btn').disabled = false;
+  };
+</script>
+
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Dark mode toggle
+    document.getElementById('theme-toggle').addEventListener('click', () =>
+      document.documentElement.classList.toggle('dark')
+    );
+
+    // Stagger outline animations
+    document.querySelectorAll('.glass, .glass-btn').forEach(el => {
+      const delay = (Math.random() * 4).toFixed(2);
+      el.style.setProperty('--delay', `-${delay}s`);
+    });
+
+    // Modal handlers
+    const modalO = document.getElementById('modal-overlay');
+    document.getElementById('open-modal').addEventListener('click', () => modalO.classList.remove('hidden'));
+    document.getElementById('close-modal').addEventListener('click', () => modalO.classList.add('hidden'));
+
+  // Fetch & render data
+   async function refresh() {
+    try {
+      // 1) Fetch the current domain entries
+      const resp = await fetch('/api/domains');
+      if (!resp.ok) throw new Error('Failed to load domain entries');
+      const data = await resp.json();
+      // shape: { domains: { "sub1": { status, date, domain }, ... }, settings: [...] }
+      const domainsObj = data.domains || {};
+
+      // 2) Convert to array & sort by date descending
+      const entries = Object.entries(domainsObj)
+        .map(([sub, v]) => ({
+          subdomain: sub,
+          status: v.status,
+          date: v.date,
+          domain: v.domain
+        }))
+        .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+      // 3) Render up to 15 items in the sidebar
+      const ul = document.getElementById('sidebar-requests');
+      ul.innerHTML = '';
+      entries.slice(0, 15).forEach(e => {
+        const li = document.createElement('li');
+        li.className = 'flex items-center justify-between';
+        const color = e.status === 'success' ? 'bg-green-500' : 'bg-yellow-500';
+        li.innerHTML = `
+          <div class="flex items-center gap-2">
+            <span class="font-medium text-white">
+              ${e.subdomain}.${e.domain}
+            </span>
+            <span class="w-2 h-2 rounded-full ${color}"></span>
+          </div>
+          <span class="text-xs text-white/75">
+            ${new Date(e.date).toLocaleDateString()}
+          </span>
+        `;
+        ul.appendChild(li);
+      });
+
+      // 4) Update stats
+      document.getElementById('stat-total').textContent  = entries.length;
+      const todayStr = new Date().toDateString();
+      document.getElementById('stat-today').textContent  =
+        entries.filter(e => new Date(e.date).toDateString() === todayStr).length;
+      document.getElementById('stat-latest').textContent = Math.min(10, entries.length);
+
+    } catch (err) {
+      console.error('Refresh failed:', err);
+    }
+  }
+
+  // Initial load + periodic refresh every 10s
+  refresh();
+  setInterval(refresh, 10000);
+
+    // Load usages dropdown
+    const usageSelect = document.getElementById('usage-select');
+    const usageFields = document.getElementById('usage-fields');
+    let usagesConfig = {};
+    fetch('/api/usages')
+      .then(r => r.json())
+      .then(cfg => {
+        usagesConfig = cfg;
+        Object.entries(cfg).forEach(([key, u]) => {
+          const opt = document.createElement('option');
+          opt.value = key;
+          opt.textContent = u.name;
+          usageSelect.appendChild(opt);
+        });
+      });
+
+    // Dynamic usage fields
+    usageSelect.addEventListener('change', () => {
+      usageFields.innerHTML = '';
+      const sel = usageSelect.value;
+      if (!usagesConfig[sel]) return;
+      usagesConfig[sel].fields.forEach(f => {
+        const wr = document.createElement('div');
+        wr.innerHTML = `
+          <label class="block text-sm font-medium mb-1 text-white">${f.label}</label>
+          <input name="${f.key}" type="${f.type}" placeholder="${f.placeholder||''}" required
+                 class="w-full px-4 py-2 border border-white/50 rounded-lg focus:outline-none bg-transparent text-white"/>
+        `;
+        usageFields.appendChild(wr);
+      });
+    });
+
+    // Subdomain availability debounce (1s)
+const subInput = document.getElementById('subdomain-input');
+const baseSelect = document.getElementById('baseDomainSelect');
+const submitBtn = document.getElementById('submit-btn');
+let timer;
+
+function resetBorder() {
+  subInput.classList.remove('border-red-500','border-green-500');
+  subInput.classList.add('border-white/50');
+}
+
+async function checkAvail(val, baseDomain) {
+  try {
+    const res = await fetch(`/api/check?subdomain=${encodeURIComponent(val)}&baseDomain=${encodeURIComponent(baseDomain)}`);
+    if (!res.ok) throw new Error();
+    return (await res.json()).available;
+  } catch {
+    return false;
+  }
+}
+
+submitBtn.disabled = true;
+
+subInput.addEventListener('input', () => {
+  const v = subInput.value.trim().toLowerCase();
+  const base = baseSelect.value.trim().toLowerCase();
+  resetBorder();
+  submitBtn.disabled = true;
+  clearTimeout(timer);
+  if (!v || !base) return;
+  timer = setTimeout(async () => {
+    const ok = await checkAvail(v, base);
+    subInput.classList.remove('border-white/50');
+    if (ok) {
+      subInput.classList.add('border-green-500');
+      submitBtn.disabled = false;
+    } else {
+      subInput.classList.add('border-red-500');
+      submitBtn.disabled = true;
+    }
+  }, 1000);
+});
+
+baseSelect.addEventListener('change', () => {
+  const v = subInput.value.trim().toLowerCase();
+  const base = baseSelect.value.trim().toLowerCase();
+  resetBorder();
+  submitBtn.disabled = true;
+  clearTimeout(timer);
+  if (!v || !base) return;
+  timer = setTimeout(async () => {
+    const ok = await checkAvail(v, base);
+    subInput.classList.remove('border-white/50');
+    if (ok) {
+      subInput.classList.add('border-green-500');
+      submitBtn.disabled = false;
+    } else {
+      subInput.classList.add('border-red-500');
+      submitBtn.disabled = true;
+    }
+  }, 1000);
+});
+
+        // Show tutorial modal on success
+    (function(){
+      const p = new URLSearchParams(window.location.search);
+      if (p.get('success')!=='1') return;
+      const sub   = p.get('sub')   || '';
+      const usage = p.get('usage') || '';
+      fetch('/data/tutorial.json')
+        .then(r=>r.json())
+        .then(tuts=>{
+          const t = tuts[usage]; if (!t) return;
+          document.getElementById('info-modal-title').textContent   = t.title.replace('{{sub}}', sub);
+          document.getElementById('info-modal-message').textContent = t.message.replace('{{sub}}', sub);
+          const btn = document.getElementById('info-modal-button');
+          btn.textContent = t.buttonText;
+          btn.href        = t.buttonUrl;
+          const ov = document.getElementById('info-modal-overlay');
+          ov.classList.remove('hidden');
+          document.getElementById('info-modal-close').onclick = ()=> ov.classList.add('hidden');
+        })
+        .catch(console.error);
+    })();
+
+    document.getElementById('subdomain-input').addEventListener('input', (e) => {
+      e.target.value = e.target.value.toLowerCase();
+    });
+
+  });
+
+  
+  </script>
+</body>
+</html>

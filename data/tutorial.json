@@ -1,0 +1,50 @@
+{
+  "cloudflare-pages": {
+    "title": "Domain {{sub}} Successfully Added!",
+    "message": "Please add your custom domain in your Cloudflare Pages project settings to complete the setup.",
+    "buttonText": "Open Pages Docs",
+    "buttonUrl": "https://developers.cloudflare.com/pages/platform/custom-domains/"
+  },
+  "discord-verification": {
+    "title": "Domain {{sub}} TXT Record Added!",
+    "message": "Wait a few minutes then try verifying your domain on Discord",
+    "buttonText": "Open Discord Docs",
+    "buttonUrl": "https://support.discord.com/hc/en-us/articles/360047931051-Adding-Domain-Verification-TXT-Records"
+  },
+  "github-pages": {
+    "title": "Domain {{sub}} Successfully Added!",
+    "message": "Head over to your GitHub Pages repository’s settings and add the custom domain there.",
+    "buttonText": "Open GitHub Pages Docs",
+    "buttonUrl": "https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site"
+  },
+  "hashnode-blogs": {
+    "title": "Domain {{sub}} Successfully Added!",
+    "message": "Please configure your custom domain in your Hashnode blog settings.",
+    "buttonText": "Open Hashnode Docs",
+    "buttonUrl": "https://docs.hashnode.com/help-center/blog-domain/how-to-map-a-custom-domain"
+  },
+  "improvmx": {
+    "title": "MX Records for {{sub}} Added!",
+    "message": "Configure the MX records in your DNS to start receiving email via ImprovMX.",
+    "buttonText": "Open ImprovMX Docs",
+    "buttonUrl": "https://improvmx.com/docs"
+  },
+  "netlify": {
+    "title": "Domain {{sub}} Successfully Added!",
+    "message": "Now add your custom domain in your Netlify dashboard under Site Settings → Domain management.",
+    "buttonText": "Open Netlify Docs",
+    "buttonUrl": "https://docs.netlify.com/domains/configure-domains/configure-external-dns/"
+  },
+  "railway": {
+    "title": "Domain {{sub}} Successfully Added!",
+    "message": "Please add the custom domain in your Railway project settings.",
+    "buttonText": "Open Railway Docs",
+    "buttonUrl": "https://docs.railway.com/guides/public-networking"
+  },
+  "vercel": {
+    "title": "Domain {{sub}} Successfully Added!",
+    "message": "Please verify the TXT record in your Vercel dashboard under Domains.",
+    "buttonText": "Open Vercel Docs",
+    "buttonUrl": "https://vercel.com/docs/domains/working-with-domains/add-a-domain"
+  }
+}
